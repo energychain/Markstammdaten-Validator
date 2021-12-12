@@ -2,7 +2,7 @@
 
 <a href="https://stromdao.de/" target="_blank" title="STROMDAO - Digital Energy Infrastructure"><img src="./static/stromdao.png" align="right" height="85px" hspace="30px" vspace="30px"></a>
 
-Create DID holding GHG Emissions
+Request Marketdata from [Marktstammdatenregister](https://www.marktstammdatenregister.de/) using SOAP.
 
 ## Installation
 
