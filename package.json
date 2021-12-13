@@ -1,6 +1,6 @@
 {
   "name": "markstammdaten-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple Node module to request data from MaSTr (Marktstammdaten Register) using SOAP",
   "main": "lib.js",
   "scripts": {
