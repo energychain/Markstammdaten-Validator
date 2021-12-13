@@ -37,6 +37,40 @@ const mastrvalidator = function(config) {
     json = json['GetListeAlleEinheitenResponse'];
     return json.Einheiten;
   }
+
+  this.getLokation = async function(locationId) {
+
+    const requesterId = config.requesterId;
+    const apiKey = config.apiKey
+
+    let xmlData = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:anl="https://www.marktstammdatenregister.de/Services/Public/1_2/Modelle/Anlage" xmlns:mod="https://www.marktstammdatenregister.de/Services/Public/1_2/Modelle"> \
+   <soapenv:Header/> \
+   <soapenv:Body> \
+      <anl:GetListeAlleLokationenRequest> \
+          <mod:apiKey>'+config.apiKey+'</mod:apiKey> \
+         <mod:marktakteurMastrNummer>'+config.requesterId+'</mod:marktakteurMastrNummer> \
+         <mod:mastrNummer>'+locationId+'</mod:mastrNummer> \
+      </anl:GetListeAlleLokationenRequest> \
+   </soapenv:Body> \
+</soapenv:Envelope> ';
+
+    const responds = await axios.post("https://www.marktstammdatenregister.de/MaStRApi/Api.svc/Soap11/Anlage",
+    xmlData,{
+      headers: {
+        'Content-Type': 'text/xml',
+        'SOAPAction':'GetListeAlleLokationen'
+      },
+    });
+
+    var json = parser.toJson(responds.data);
+    json = JSON.parse(json);
+
+    json = json['s:Envelope'];
+    json = json['s:Body'];
+    json = json['GetListeAlleLokationenResponse'];
+    return json.Lokationen;
+  }
+
 }
 
 module.exports = mastrvalidator;

@@ -8,6 +8,34 @@ Request Marketdata from [Marktstammdatenregister](https://www.marktstammdatenreg
 
 Use the package manager [npm](https://www.npmjs.com/) to install markstammdaten-validator
 
+
+## Configuration - API Key - Webdienst Nutzer
+
+The config object for the validator requires you to set an `apiKey` and a `requesterId` like:
+
+```javascript
+{
+  apiKey: 'YOUR_API_KEY',
+  requesterId: ''
+}
+ ```
+
+### Register for Martkstammdatenregister (MaStR)
+- [Register for Marktstammdatenregister](https://www.marktstammdatenregister.de/MaStR/Assistent/AuswahlAssistent)
+
+### Get apiKey
+- Go to the [MaStR Zugang ansehen](https://www.marktstammdatenregister.de/MaStR/Akteur/MastrZugang/ProfileDetail#benutzer)
+- Click on `Benutzer`
+- Click on `Neuen Benutzer registrieren`
+- Select third option `Der neue Benutzer ist kein Mensch...`
+- Your API-Key will be shown (540 characters long)
+
+### Get requesterId
+- [Neuen Marktakteur anlegen](https://www.marktstammdatenregister.de/MaStR/Akteur/Marktakteur)
+- Use `Sonstiger Marktakteur` as `Marktfunktion`
+- After everything is completed you get a `MaStR-Nr.` which is your `requesterId` it will start with `SOM`and has a length of 15 charts.
+-
+
 ## Useage as a module
 
 ```bash
@@ -18,11 +46,12 @@ npm install --save markstammdaten-validator
 const validator = require("markstammdaten-validator");
 
 const app = async function() {
-  let responds = new validator({
+  let v = new validator({
     apiKey:'KEY_WEBDIENST_USER',
     requesterId:'MaSTRNummer_WEBDIENST_USER'
   });
-  console.log(await responds.getEinheit());
+  console.log(await v.getEinheit('SEE970942383410'));
+  console.log(await v.getLokation('SEL982068309366'));
 }
 app();
 ```

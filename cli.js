@@ -7,5 +7,6 @@ const app = async function() {
     requesterId:process.env.requesterId
   });
   console.log(await responds.getEinheit('SEE970942383410'));
+  console.log(await responds.getLokation('SEL982068309366'));
 }
 app();
