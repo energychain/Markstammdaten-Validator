@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/energychain/Markstammdaten-Validator#readme",
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^1.6.0",
     "xml2json": "^0.12.0"
   },
   "devDependencies": {
